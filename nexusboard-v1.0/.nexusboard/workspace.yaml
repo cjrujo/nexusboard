@@ -1,0 +1,48 @@
+schema: nexusboard-workspace/v1.0
+workspace_id: ws_nexus_prod
+name: "Nexus Engineering & AI Operations"
+revision: 12
+updated_at: "2026-11-12T01:15:00Z"
+
+preferences:
+  locale: en
+  theme: obsidian-dark
+  default_view: kanban
+  keyboard_mode: linear-vim
+  card_density: comfortable
+
+summarization_schedule:
+  enabled: true
+  cadence: daily
+  daily_time_utc: "17:00"
+  include_tabs: ["all"]
+  output_locales: ["en", "zh-CN", "ja"]
+
+tabs:
+  - id: core-platform
+    title: "Core Platform"
+    icon: "cpu"
+    file: "projects/core-platform.yaml"
+    pinned: true
+  - id: mobile-v2
+    title: "Mobile App v2.0"
+    icon: "smartphone"
+    file: "projects/mobile-v2.yaml"
+    pinned: true
+  - id: ai-agent-fleet
+    title: "AI Agent Fleet & Skills"
+    icon: "bot"
+    file: "projects/ai-agent-fleet.yaml"
+    pinned: true
+
+registered_actors:
+  humans:
+    - { id: wesley, name: "Wesley", role: "Lead Architect", authority: "full-peer" }
+    - { id: elena, name: "Elena", role: "Product Lead", authority: "full-peer" }
+    - { id: marcus, name: "Marcus", role: "SecOps Lead", authority: "full-peer" }
+    - { id: aria, name: "Aria", role: "Staff Engineer", authority: "full-peer" }
+  agents:
+    - { id: claude-code, name: "Claude Code", channels: ["mcp", "cli", "skill"], specialty: ["arch", "backend", "refactor"], authority: "full-peer" }
+    - { id: codex, name: "OpenAI Codex", channels: ["mcp", "cli", "rest"], specialty: ["backend", "tests", "security"], authority: "full-peer" }
+    - { id: pi-agent, name: "Pi Agent", channels: ["skill", "cli", "rest"], specialty: ["automation", "ops", "fullstack"], authority: "full-peer" }
+    - { id: grok-bot, name: "Grok Bot", channels: ["rest", "mcp"], specialty: ["research", "triage", "summary"], authority: "full-peer" }

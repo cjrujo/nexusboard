@@ -1,0 +1,56 @@
+schema: nexusboard-project/v1.0
+project:
+  id: ai-agent-fleet
+  title: "AI Agent Fleet & Skills"
+  description: "MCP Server, REST API, nxb CLI, and SKILL.md integration for Pi, Codex, Claude Code & Grok Bot"
+  revision: 15
+  checksum: "sha256:1f2e3d4c5b6a798897a6b5c4d3e2f100"
+  updated_at: "2026-11-12T01:15:00Z"
+  updated_by: { id: "grok-bot", type: "agent", channel: "rest" }
+  authority_policy:
+    mode: "dual-full-control"
+    human_full_access: true
+    agent_full_access: true
+    hitl_gate_tags: []
+    snapshot_retention: 50
+
+columns:
+  - { id: backlog, title: "Backlog", wip_limit: 12, color: "slate" }
+  - { id: todo, title: "ToDo", wip_limit: 8, color: "indigo" }
+  - { id: in_progress, title: "In Progress", wip_limit: 5, color: "sky" }
+  - { id: done, title: "Done", wip_limit: 999, color: "emerald" }
+
+tasks:
+  - id: AGT-301
+    title: "Publish Drop-in SKILL.md & CLI Wrapper for Pi Agent and Claude Code"
+    description: "Package zero-dependency nxb CLI and SKILL.md instructions so coding agents can groom and maintain all YAML tabs."
+    status: done
+    priority: P0
+    category: Agent-SDK
+    tags: ["#skill", "#cli", "#mcp"]
+    co_owners:
+      humans: ["wesley"]
+      agents: ["pi-agent", "claude-code"]
+    dependencies: []
+    progress: 100
+    subtasks:
+      - { id: "a-1", text: "Author SKILL.md with YAML schema & CLI examples", done: true, actor: "pi-agent" }
+      - { id: "a-2", text: "Verify <35ms local CLI execution latency", done: true, actor: "claude-code" }
+    changelog: []
+
+  - id: AGT-302
+    title: "Configure Grok Bot Webhook & Scheduled Multilingual Digest Pipeline"
+    description: "Generate daily/weekly YAML + Markdown executive summaries in 8 languages with Human vs. AI velocity metrics."
+    status: in_progress
+    priority: P1
+    category: Summarization
+    tags: ["#grok-bot", "#digest", "#i18n"]
+    co_owners:
+      humans: ["elena"]
+      agents: ["grok-bot"]
+    dependencies: ["AGT-301"]
+    progress: 70
+    subtasks:
+      - { id: "a-3", text: "Build deterministic velocity & blocker aggregator", done: true, actor: "grok-bot" }
+      - { id: "a-4", text: "Add 8-locale executive narrative templates", done: false, actor: "grok-bot" }
+    changelog: []

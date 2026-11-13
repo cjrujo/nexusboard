@@ -1,0 +1,18 @@
+{
+  "name": "nexusboard-monorepo",
+  "version": "1.0.0",
+  "private": true,
+  "description": "World-Class YAML-Native Human x AI Agent Collaboration Kanban Platform",
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "node packages/cli/src/nxb.mjs serve",
+    "nxb": "node packages/cli/src/nxb.mjs",
+    "mcp": "node packages/mcp/src/server.mjs",
+    "test": "node packages/core-yaml/src/test-cas.mjs"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  }
+}

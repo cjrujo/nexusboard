@@ -1,0 +1,15 @@
+name = "nexusboard-edge"
+main = "packages/api-server/src/worker.ts"
+compatibility_date = "2026-11-01"
+
+# Scheduled Summarization Cron Trigger (Daily at 17:00 UTC)
+[triggers]
+crons = ["0 17 * * *"]
+
+[[r2_buckets]]
+binding = "NXB_YAML_BUCKET"
+bucket_name = "nexusboard-yaml-store"
+
+[[durable_objects.bindings]]
+name = "NXB_WORKSPACE_COORDINATOR"
+class_name = "NexusWorkspaceCoordinator"

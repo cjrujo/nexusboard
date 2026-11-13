@@ -1,0 +1,55 @@
+schema: nexusboard-project/v1.0
+project:
+  id: mobile-v2
+  title: "Mobile App v2.0"
+  description: "Touch swipe gestures, offline IndexedDB queue, and responsive bottom sheets"
+  revision: 9
+  checksum: "sha256:7c9d1e2f3a4b5c6d7e8f9a0b1c2d3e4f"
+  updated_at: "2026-11-12T01:15:00Z"
+  updated_by: { id: "elena", type: "human", channel: "ui" }
+  authority_policy:
+    mode: "dual-full-control"
+    human_full_access: true
+    agent_full_access: true
+    hitl_gate_tags: ["#appstore-submit"]
+    snapshot_retention: 50
+
+columns:
+  - { id: backlog, title: "Backlog", wip_limit: 12, color: "slate" }
+  - { id: todo, title: "ToDo", wip_limit: 8, color: "indigo" }
+  - { id: in_progress, title: "In Progress", wip_limit: 4, color: "sky" }
+  - { id: done, title: "Done", wip_limit: 999, color: "emerald" }
+
+tasks:
+  - id: MOB-201
+    title: "Implement Right-Swipe Stage Advance & Left-Swipe Agent Delegation"
+    description: "Add 60fps touch physics for mobile/tablet manipulation and thumb-zone quick action sheet."
+    status: in_progress
+    priority: P1
+    category: Frontend
+    tags: ["#mobile", "#gestures"]
+    co_owners:
+      humans: ["elena"]
+      agents: ["claude-code"]
+    dependencies: []
+    progress: 60
+    subtasks:
+      - { id: "m-1", text: "Add touchstart/touchend velocity recognizer", done: true, actor: "claude-code" }
+      - { id: "m-2", text: "Bind haptic feedback and undo toast", done: false, actor: "claude-code" }
+    changelog: []
+
+  - id: MOB-202
+    title: "Build Offline IndexedDB Mutation Queue with Reconnect CAS Replay"
+    description: "Queue card moves and edits while offline and replay them through the 3-way YAML merger on reconnect."
+    status: backlog
+    priority: P1
+    category: Reliability
+    tags: ["#offline", "#indexeddb"]
+    co_owners:
+      humans: ["aria"]
+      agents: ["pi-agent"]
+    dependencies: ["MOB-201"]
+    progress: 0
+    subtasks:
+      - { id: "m-3", text: "Persist pending patches in IndexedDB store", done: false, actor: "pi-agent" }
+    changelog: []

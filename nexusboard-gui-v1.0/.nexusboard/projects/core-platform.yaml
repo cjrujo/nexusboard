@@ -1,0 +1,104 @@
+schema: nexusboard-project/v1.0
+project:
+  id: core-platform
+  title: "Core Platform & YAML Engine"
+  description: "Zero-DB YAML storage engine, 3-Way AST CAS merger, and multi-target adapters"
+  revision: 26
+  checksum: "sha256:8b9c0d1e2f3a4b5c6d7e8f9a0b1c2d3e"
+  updated_at: "2026-11-12T04:17:00Z"
+  updated_by: { actor: "AI (Authorized Agent)", channel: "smart-organize" }
+  authority_policy:
+    mode: "dual-full-control"
+    human_full_access: true
+    agent_full_access: true
+    hitl_gate_tags: ["#prod-release"]
+    snapshot_retention: 50
+
+columns:
+  - { id: backlog, title: "Backlog", wip_limit: 12, color: "slate" }
+  - { id: todo, title: "ToDo", wip_limit: 8, color: "indigo" }
+  - { id: in_progress, title: "In Progress", wip_limit: 5, color: "sky" }
+  - { id: done, title: "Done", wip_limit: 999, color: "emerald" }
+  - { id: archived, title: "Archived (By Category)", wip_limit: 999, color: "slate" }
+
+tasks:
+  - id: CORE-101
+    title: "Implement 3-Way Task-Level YAML CAS Merger & Atomic Rename"
+    description: "Ensure concurrent Human UI drags and AI CLI/MCP writes validate revision numbers and auto-merge disjoint task edits without losing comments."
+    status: done
+    lease_holder: "claude-code-term1"
+    lease_ttl_min: 15
+    priority: P0
+    category: Backend
+    tags: ["#yaml-engine", "#cas-lock"]
+    assignee:
+      type: AI
+    dependencies: []
+    progress: 80
+    subtasks:
+      - { id: "s1", text: "Build field-level 3-way YAML task merger", done: true }
+      - { id: "s2", text: "Add LocalFS fsync+rename & Cloudflare R2 ETag adapter", done: true }
+      - { id: "s3", text: "Verify 50-actor parallel CAS stress test", done: false }
+
+  - id: CORE-102
+    title: "Approve Production Security & Authority Governance Spec"
+    description: "Final architectural sign-off on symmetric dual-path authority and tag-gated checkpoints."
+    status: in_progress
+    priority: P0
+    category: Architecture
+    tags: ["#governance", "#security"]
+    assignee:
+      type: HUMAN
+      human_function: "Architecture"
+      human_name: "Wesley"
+    dependencies: ["CORE-101"]
+    progress: 95
+    subtasks:
+      - { id: "s201", text: "Review dual-path YAML schema", done: true }
+      - { id: "s202", text: "Sign off on production authority rules", done: true }
+
+  - id: CORE-103
+    title: "Deploy Hono Edge API + Cloudflare Durable Object Coordinator"
+    description: "Package unified Hono server supporting both Node.js/Bun VPS and Cloudflare Workers/Pages with SSE live delta streaming."
+    status: in_progress
+    priority: P2
+    category: Backend
+    tags: ["#cloudflare", "#vps", "#hono"]
+    assignee:
+      type: AI
+    dependencies: ["CORE-101"]
+    progress: 25
+    subtasks:
+      - { id: "s301", text: "Configure wrangler.toml R2 + Durable Objects bindings", done: true }
+      - { id: "s302", text: "Benchmark <60ms SSE delta patch broadcast", done: false }
+
+  - id: CORE-104
+    title: "Build Self-Healing Malformed YAML Quarantine Guard"
+    description: "Detect syntax errors from manual Vim edits, quarantine corrupt bytes, and preserve last valid revision in memory."
+    status: backlog
+    priority: P0
+    category: Reliability
+    tags: ["#self-healing", "#quarantine"]
+    assignee:
+      type: AI
+    dependencies: []
+    progress: 15
+    subtasks:
+      - { id: "s401", text: "Implement AST line/column syntax error locator", done: true }
+      - { id: "s402", text: "Add 1-click Auto-Repair button in Split YAML drawer", done: false }
+
+  - id: CORE-105
+    title: "Establish Master AI v3.1 Schema & Multi-Tab Directory Standard"
+    description: "Define .nexusboard/ directory hierarchy for workspace.yaml, projects/*.yaml, summaries/*.yaml, and history snapshots."
+    status: archived
+    priority: P0
+    category: Architecture
+    tags: ["#schema", "#yaml"]
+    assignee:
+      type: HUMAN
+      human_function: "Architecture"
+      human_name: "Wesley"
+    dependencies: []
+    progress: 100
+    subtasks:
+      - { id: "s501", text: "Finalize workspace.yaml and project.yaml v1.0 specification", done: true }

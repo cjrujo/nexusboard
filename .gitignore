@@ -1,0 +1,6 @@
+node_modules/
+target/
+dist-ssr/
+*.local
+.DS_Store
+Thumbs.db
